@@ -1,8 +1,7 @@
 export let jerry = {
   foodLevel: 10,
-  happyLevel: 10,
+  happyLevel: 20,
   sleepLevel: 10,
-  // lifeLevel: foodLevel + happyLevel + sleepLevel;
 
   setHunger: function(){
     const hungerInterval = setInterval(()=>{
@@ -27,7 +26,7 @@ export let jerry = {
     if(this.didYouGetHungry()==false){
       return function(food){
         that.foodLevel += amount;
-        return 'Jerry ate the ${food}! Food level goes up ${amount}!';
+        return `Jerry ate the ${food}! Food level goes up ${amount}!`;
       };
     } else {
       return 'Sorry jerry is starving!';
@@ -38,7 +37,7 @@ export let jerry = {
     const happyInterval = setInterval(()=>{
       this.happyLevel--;
       if(this.didYouGetBored()==true){
-        clearInterval(happyLevel);
+        clearInterval(happyInterval);
         return "Jerry is sad";
       }
     }, 1000);
@@ -57,7 +56,8 @@ export let jerry = {
       if(this.foodLevel>0){
         this.happyLevel += amount;
       }
-      return 'Jerry played ${type}! Happy level goes up ${amount}!';
+      return `Jerry played ${type}! Happy level goes up ${amount}!`;
+
     });
   },
 
@@ -68,9 +68,8 @@ export let jerry = {
         clearInterval(sleepInterval);
         return "Jerry is sleepy";
       }
-    }, 100);
+    }, 1000);
   },
-
   didYouGetSleepy: function(){
     if(this.sleepLevel > 0){
       return false;
@@ -84,11 +83,11 @@ export let jerry = {
       if(this.foodLevel>0){
         this.sleepLevel += amount;
       }
-      return 'Jerry sleep ${duration}! Sleep level goes up ${amount}!'
+      return `Jerry sleep ${duration}! Sleep level goes up ${amount}!`
     });
   },
-};
 
+};
 jerry.eatMilk = jerry.feed(3);
 jerry.eatCrackers = jerry.feed(6);
 jerry.eatCheese = jerry.feed(9);
